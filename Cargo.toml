@@ -1,0 +1,27 @@
+[package]
+name = "lister-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["Erik Hollensbe <erik+github@hollensbe.org>"]
+description = "Lister: Navigate Markdown Lists"
+keywords = [ "markdown", "list", "ui" ]
+license = "MIT"
+homepage = "https://github.com/erikh/lister"
+repository = "https://github.com/erikh/lister"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+crossterm = "^0.27"
+clap = { version = "^4", features = [ "derive" ] }
+anyhow = "^1"
+regex = "^1"
+lazy_static = "^1"
+cursive = { version = "^0.20", default-features = false, features = [ "crossterm-backend" ] }
+cursive_tree_view = "^0.8"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 48
+opt-level = 3
