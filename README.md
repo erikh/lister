@@ -29,11 +29,11 @@ If you need an example of the format, [look here](https://github.com/erikh/liste
 -   List nesting is controlled by whitespace indentation, which must be equi-distant from the parent's `-` mark for all items, outside of that, feel free to indent how you want. Tab characters are not expanded into spaces, and are only treated as one character, which may cause painful results if mixing with normal space characters.
     -   Every nesting level of the tree has equivalent whitespace on all lines. Out-denting or indenting items even by one space will produce additional unexpected levels of nesting.
 -   Use the following keys to navigate the tool:
-    -   `?` for interactive help (`?` again or `q` to quit)
+    -   `?` for interactive help (`?` again or `q` to quit the help menu)
     -   `q` to quit the program
     -   `j` or the down arrow to move down
     -   `k` or the up arrow to move up
-    -   Enter to expand sub-trees
+    -   Enter or Space to expand sub-trees
 
 ## Author
 
