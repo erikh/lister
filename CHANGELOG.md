@@ -1,2 +1,4 @@
+-   0.1.1:
+    -   New theme!
 -   0.1.0:
     -   First Release!
