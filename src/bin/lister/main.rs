@@ -2,6 +2,7 @@ use anyhow::Result;
 use clap::Parser;
 use cursive::{
     self,
+    theme::{BaseColor, BorderStyle, Color, Palette, PaletteColor, Theme},
     traits::*,
     views::{Dialog, TextContent, TextView},
 };
@@ -28,6 +29,20 @@ fn main() -> Result<()> {
     let tree = Tree::new(read_to_string(cli.filename)?.into());
 
     let mut siv = cursive::default();
+
+    let mut theme = Theme::default();
+    theme.shadow = false;
+    theme.borders = BorderStyle::Simple;
+    let mut palette = Palette::terminal_default();
+    palette[PaletteColor::Primary] = Color::Light(BaseColor::Black);
+    palette[PaletteColor::Secondary] = Color::Light(BaseColor::Cyan);
+    palette[PaletteColor::Tertiary] = Color::Dark(BaseColor::Cyan);
+    palette[PaletteColor::TitlePrimary] = Color::Light(BaseColor::White);
+    palette[PaletteColor::TitleSecondary] = Color::Dark(BaseColor::White);
+    palette[PaletteColor::HighlightText] = Color::Dark(BaseColor::Cyan);
+    theme.palette = palette;
+    siv.set_theme(theme);
+
     siv.add_layer(
         Dialog::around(tree.as_treeview().scrollable())
             .title(tree.title())
