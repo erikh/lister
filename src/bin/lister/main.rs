@@ -46,7 +46,7 @@ fn main() -> Result<()> {
             s.add_layer(
                 Dialog::around(TextView::new_with_content(TextContent::new(
                     r#"
-Lister takes markdown lists and turns them into navigatable UI
+Lister takes markdown lists and turns them into navigable UI
 
 Help:
 
