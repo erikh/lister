@@ -3,7 +3,6 @@ mod parser;
 mod tests;
 mod tree;
 use anyhow::{anyhow, Result};
-use std::ops::{Deref, DerefMut};
 
 // Paths are functionally the traversal path needed to be taken to reach the specified item. Paths
 // are technically treated as unique throughout the code though not formally, though this may
@@ -11,33 +10,7 @@ use std::ops::{Deref, DerefMut};
 // nested list of ChecklistItems. Continuing down the path assumes you can continue the next index
 // and repeat until the last item, where the value lies. Paths are built automatically on tree
 // construction and can be used to find the same object.
-#[derive(Debug, Clone, Default, PartialEq, Eq, PartialOrd, Ord)]
-pub struct Path(Vec<usize>);
-
-impl Deref for Path {
-    type Target = Vec<usize>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl DerefMut for Path {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
-    }
-}
-
-impl Path {
-    fn overlap(&self, other: &Self) -> usize {
-        let mut total = 0;
-        for (x, item) in self.0.iter().enumerate() {
-            if other[x] == *item {
-                total += 1;
-            }
-        }
-        total
-    }
-}
+pub type Path = Vec<usize>;
 
 pub type ChecklistItems = Vec<ChecklistItem>;
 
