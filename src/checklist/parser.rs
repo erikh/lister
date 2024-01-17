@@ -127,9 +127,18 @@ impl From<&str> for Checklist {
             let title = value[loc.0..loc.1].to_string();
 
             let item = if let Some(checked) = checked {
-                ChecklistItem::Task(checked, title, Vec::new())
+                ChecklistItem {
+                    title,
+                    checked: Some(checked),
+                    position: path.clone(),
+                    ..Default::default()
+                }
             } else {
-                ChecklistItem::Item(title, Vec::new())
+                ChecklistItem {
+                    title,
+                    position: path.clone(),
+                    ..Default::default()
+                }
             };
 
             obj.append(path.clone(), item.clone()).unwrap();
