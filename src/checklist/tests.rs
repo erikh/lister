@@ -13,7 +13,12 @@ fn test_to_from_string() -> Result<()> {
   - item 3
     - item 4
   - item 5
-- item 6
+  - item 6
+    - item 7
+- item 8
+  - item 9
+  - item 10
+- item 11
         "#,
             Checklist {
                 title: "This is a title".to_string(),
@@ -27,9 +32,20 @@ fn test_to_from_string() -> Result<()> {
                                 vec![ChecklistItem::Item("item 4".to_string(), Vec::new())],
                             ),
                             ChecklistItem::Item("item 5".to_string(), Vec::new()),
+                            ChecklistItem::Item(
+                                "item 6".to_string(),
+                                vec![ChecklistItem::Item("item 7".to_string(), Vec::new())],
+                            ),
                         ],
                     ),
-                    ChecklistItem::Item("item 6".to_string(), Vec::new()),
+                    ChecklistItem::Item(
+                        "item 8".to_string(),
+                        vec![
+                            ChecklistItem::Item("item 9".to_string(), Vec::new()),
+                            ChecklistItem::Item("item 10".to_string(), Vec::new()),
+                        ],
+                    ),
+                    ChecklistItem::Item("item 11".to_string(), Vec::new()),
                 ],
             },
         ),
