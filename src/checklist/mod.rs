@@ -5,6 +5,12 @@ mod tree;
 use anyhow::{anyhow, Result};
 use std::ops::{Deref, DerefMut};
 
+// Paths are functionally the traversal path needed to be taken to reach the specified item. Paths
+// are technically treated as unique throughout the code though not formally, though this may
+// change in the future. Each element in a path, empty for the root, is an index of a sequentially
+// nested list of ChecklistItems. Continuing down the path assumes you can continue the next index
+// and repeat until the last item, where the value lies. Paths are built automatically on tree
+// construction and can be used to find the same object.
 #[derive(Debug, Clone, Default, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Path(Vec<usize>);
 
