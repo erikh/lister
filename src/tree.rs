@@ -22,21 +22,25 @@ fn collapse_func(siv: &mut Cursive, row: usize, is_collapsed: bool, children: us
     }
 }
 
-fn tree_insert(
-    tv: &mut ChecklistTree,
-    items: ChecklistItems,
-    parent: usize,
-    placement: Placement,
-) -> usize {
+fn tree_insert(tv: &mut ChecklistTree, items: ChecklistItems, parent: usize, placement: Placement) {
     for item in items {
         if item.items().is_empty() {
-            tv.insert_item(item, placement, parent);
+            tv.insert_item(item.clone(), placement, parent);
         } else {
-            tv.insert_container_item(item.clone(), placement, parent);
+            if let Some(id) = tv.insert_container_item(item.clone(), placement, parent) {
+                tv.expand_item(id);
+
+                tree_insert(
+                    tv,
+                    tv.borrow_item(id).unwrap().items().to_vec(),
+                    id,
+                    Placement::LastChild,
+                );
+
+                tv.collapse_item(id);
+            }
         }
     }
-
-    parent
 }
 
 impl Tree {
@@ -96,7 +100,7 @@ impl Tree {
 
     pub fn as_treeview(&self) -> NamedView<ChecklistTree> {
         let mut tv = ChecklistTree::new();
-        tree_insert(&mut tv, self.checklist.items.clone(), 0, Placement::After);
+        tree_insert(&mut tv, self.checklist.items.to_vec(), 0, Placement::After);
         tv.set_on_collapse(collapse_func);
         tv.with_name("tree")
     }

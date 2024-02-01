@@ -69,12 +69,28 @@ Help:
 <Down Arrow>, j - Move Down
 <Up Arrow>, k - Move Up
 <Enter>, <Space> - Expand or Contract a Sub-List
+> - Expand all sub-trees
+< - Collapse all sub-trees
 q - Quit this Program
 
 "#,
                 )))
                 .title("Help"),
             );
+        }
+    });
+
+    siv.add_global_callback('>', |s| {
+        let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
+        for r in 0..tree.len() {
+            tree.set_collapsed(r, false);
+        }
+    });
+
+    siv.add_global_callback('<', |s| {
+        let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
+        for r in 0..tree.len() {
+            tree.set_collapsed(r, true);
         }
     });
 
