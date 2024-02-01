@@ -94,6 +94,12 @@ q - Quit this Program
         }
     });
 
+    siv.add_global_callback('G', |s| {
+        let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
+        let len = tree.len();
+        tree.set_selected_row(len - 1);
+    });
+
     siv.add_global_callback('j', |s| {
         s.on_event(cursive::event::Event::Key(cursive::event::Key::Down));
     });

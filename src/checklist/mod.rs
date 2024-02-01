@@ -72,19 +72,30 @@ impl Checklist {
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum ChecklistItem {
-    Item(String, ChecklistItems),
-    Task(bool, String, ChecklistItems),
+    Item {
+        title: String,
+        items: ChecklistItems,
+        collapsed: bool,
+    },
+    Task {
+        complete: bool,
+        title: String,
+        items: ChecklistItems,
+        collapsed: bool,
+    },
 }
 
 impl std::fmt::Display for ChecklistItem {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            ChecklistItem::Task(complete, title, _) => f.write_str(&format!(
+            ChecklistItem::Task {
+                complete, title, ..
+            } => f.write_str(&format!(
                 "[{}] {}\n",
                 if *complete { "x" } else { " " },
                 title
             )),
-            ChecklistItem::Item(title, _) => f.write_str(&format!("{}\n", title)),
+            ChecklistItem::Item { title, .. } => f.write_str(&format!("{}\n", title)),
         }
     }
 }
@@ -92,18 +103,27 @@ impl std::fmt::Display for ChecklistItem {
 impl ChecklistItem {
     pub fn title(&self) -> String {
         match self {
-            ChecklistItem::Item(title, _) | ChecklistItem::Task(_, title, _) => title.clone(),
+            ChecklistItem::Item { title, .. } | ChecklistItem::Task { title, .. } => title.clone(),
         }
     }
+
+    pub fn collapsed(&self) -> bool {
+        match self {
+            ChecklistItem::Item { collapsed, .. } | ChecklistItem::Task { collapsed, .. } => {
+                *collapsed
+            }
+        }
+    }
+
     pub fn items(&self) -> &ChecklistItems {
         match self {
-            ChecklistItem::Item(_, new_items) | ChecklistItem::Task(_, _, new_items) => new_items,
+            ChecklistItem::Item { items, .. } | ChecklistItem::Task { items, .. } => items,
         }
     }
 
     pub fn items_mut(&mut self) -> &mut ChecklistItems {
         match self {
-            ChecklistItem::Item(_, new_items) | ChecklistItem::Task(_, _, new_items) => new_items,
+            ChecklistItem::Item { items, .. } | ChecklistItem::Task { items, .. } => items,
         }
     }
 }

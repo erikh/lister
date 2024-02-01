@@ -126,10 +126,19 @@ impl From<&str> for Checklist {
             let loc = locations.get(3).unwrap();
             let title = value[loc.0..loc.1].to_string();
 
-            let item = if let Some(checked) = checked {
-                ChecklistItem::Task(checked, title, Vec::new())
+            let item = if let Some(complete) = checked {
+                ChecklistItem::Task {
+                    complete,
+                    title,
+                    items: Vec::new(),
+                    collapsed: true,
+                }
             } else {
-                ChecklistItem::Item(title, Vec::new())
+                ChecklistItem::Item {
+                    title,
+                    items: Vec::new(),
+                    collapsed: true,
+                }
             };
 
             obj.append(path.clone(), item.clone()).unwrap();
