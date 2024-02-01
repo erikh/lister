@@ -1,3 +1,5 @@
+-   0.1.2:
+    -   Collapse (`<`) and Expand (`>`) keys
 -   0.1.1:
     -   New theme!
 -   0.1.0:
