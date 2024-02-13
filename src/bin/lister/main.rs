@@ -34,11 +34,11 @@ fn main() -> Result<()> {
     theme.shadow = false;
     theme.borders = BorderStyle::Simple;
     let mut palette = Palette::terminal_default();
-    palette[PaletteColor::Primary] = Color::Light(BaseColor::Black);
+    palette[PaletteColor::Primary] = Color::Dark(BaseColor::White);
     palette[PaletteColor::Secondary] = Color::Light(BaseColor::Cyan);
     palette[PaletteColor::Tertiary] = Color::Dark(BaseColor::Cyan);
     palette[PaletteColor::TitlePrimary] = Color::Light(BaseColor::White);
-    palette[PaletteColor::TitleSecondary] = Color::Dark(BaseColor::White);
+    palette[PaletteColor::TitleSecondary] = Color::Dark(BaseColor::Cyan);
     palette[PaletteColor::HighlightText] = Color::Dark(BaseColor::Cyan);
     theme.palette = palette;
     siv.set_theme(theme);
