@@ -1,3 +1,5 @@
+-   0.1.3:
+    -   Fix colorscheme for some terminals, notably iterm
 -   0.1.2:
     -   Collapse (`<`) and Expand (`>`) keys
 -   0.1.1:
