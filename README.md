@@ -34,6 +34,10 @@ If you need an example of the format, [look here](https://github.com/erikh/liste
     -   `j` or the down arrow to move down
     -   `k` or the up arrow to move up
     -   Enter or Space to expand sub-trees
+    -   `>` to expand all subtrees at once and move to the top row
+    -   `<` to collapse all subtrees at once and move to the top row
+    -   `g` to move to the top row
+    -   `G` to move to the bottom row
 
 ## Author
 
