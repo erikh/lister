@@ -1,3 +1,6 @@
+-   0.1.3:
+    -   Fix g and G keys, document in help
+    -   `<` and `>` now select the top row on keypress, which is a little less surprising.
 -   0.1.2:
     -   Fix colorscheme for some terminals, notably iterm
     -   Collapse (`<`) and Expand (`>`) keys

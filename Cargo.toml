@@ -1,6 +1,6 @@
 [package]
 name = "lister-cli"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 authors = ["Erik Hollensbe <erik+github@hollensbe.org>"]
 description = "Lister: Navigate Markdown Lists"
