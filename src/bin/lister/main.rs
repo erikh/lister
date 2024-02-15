@@ -84,6 +84,7 @@ q - Quit this Program
         let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
         for r in 0..tree.len() {
             tree.set_collapsed(r, false);
+            tree.set_selected_row(0);
         }
     });
 
@@ -91,12 +92,24 @@ q - Quit this Program
         let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
         for r in 0..tree.len() {
             tree.set_collapsed(r, true);
+            tree.set_selected_row(0);
         }
+    });
+
+    siv.add_global_callback('g', |s| {
+        let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
+        for _ in 0..tree.row().unwrap_or_default() {
+            s.on_event(cursive::event::Event::Key(cursive::event::Key::Up));
+        }
+        tree.set_selected_row(0);
     });
 
     siv.add_global_callback('G', |s| {
         let mut tree = s.find_name::<ChecklistTree>("tree").unwrap();
         let len = tree.len();
+        for _ in tree.row().unwrap_or_default()..len {
+            s.on_event(cursive::event::Event::Key(cursive::event::Key::Down));
+        }
         tree.set_selected_row(len - 1);
     });
 
