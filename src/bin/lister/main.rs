@@ -69,6 +69,8 @@ Help:
 <Down Arrow>, j - Move Down
 <Up Arrow>, k - Move Up
 <Enter>, <Space> - Expand or Contract a Sub-List
+g - Move to top row
+G - Move to bottom row
 > - Expand all sub-trees
 < - Collapse all sub-trees
 q - Quit this Program
