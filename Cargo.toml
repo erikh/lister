@@ -12,13 +12,13 @@ repository = "https://github.com/erikh/lister"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-crossterm = "^0.27"
+crossterm = "^0.28"
 clap = { version = "^4", features = [ "derive" ] }
 anyhow = "^1"
 regex = "^1"
 lazy_static = "^1"
-cursive = { version = "^0.20", default-features = false, features = [ "crossterm-backend" ] }
-cursive_tree_view = "^0.8"
+cursive = { version = "^0.21", default-features = false, features = [ "crossterm-backend" ] }
+cursive_tree_view = "^0.9"
 
 [profile.release]
 strip = true
