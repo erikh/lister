@@ -2,7 +2,7 @@
 name = "lister-cli"
 version = "0.1.4"
 edition = "2021"
-authors = ["Erik Hollensbe <erik+github@hollensbe.org>"]
+authors = ["Erik Hollensbe <git@hollensbe.org>"]
 description = "Lister: Navigate Markdown Lists"
 keywords = [ "markdown", "list", "ui" ]
 license = "MIT"
